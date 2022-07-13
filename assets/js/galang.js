@@ -205,3 +205,30 @@ if (document.getElementById("formorderadmin")) {
     //$(location).attr("href", "?page=order");
   });
 }
+
+if(document.getElementById("formlupapass")){
+  $("#konfirm").click(function () {
+    let user = $("#username").val();
+    let pass_baru = $("#password").val();
+    let konfirmpassbaru = $("#konfirmpassword").val();
+    if (user == "" || user == null) {
+      alert("Username wajib diisi");
+    } else if (pass_baru == "" || pass_baru == null) {
+      alert("Password baru wajib diisi");
+    } else if (konfirmpassbaru == "" || konfirmpassbaru == null) {
+      alert("Konfirmasi Password baru wajib diisi");
+    } else {
+      $("#konfirmasi").modal("show");
+    }
+  });
+
+  $("#konfirmpassword").keyup(function (){
+    let pass_baru = $("#password").val();
+    let konfirmpassbaru = $("#konfirmpassword").val();
+    if(pass_baru !== konfirmpassbaru){
+      $("#txtkonfirm").text("Password Tidak Sama !!!");
+    }else{
+      $("#txtkonfirm").text("");
+    }
+  })
+}

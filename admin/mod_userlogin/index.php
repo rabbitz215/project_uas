@@ -27,9 +27,9 @@ if (!isset($_GET['action'])) {
                 <td><?= $list['is_active']; ?></td>
                 <td>
                     <a href="?modul=mod_userlogin&action=edit&id=<?= $list['iduser']; ?>" class="btn btn-primary">
-                        <i class="bi bi-pencil-square"></i>Edit</a>
+                        <i class="bi bi-pencil-square"></i> Edit</a>
                     <a href="?modul=mod_userlogin&action=delete&id=<?= $list['iduser']; ?>" class="btn btn-danger">
-                        <i class="bi bi-trash"></i>Delete</a>
+                        <i class="bi bi-trash"></i> Delete</a>
                 </td>
             </tr>
         <?php } ?>
