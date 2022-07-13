@@ -3,15 +3,16 @@
 session_start();
 if (isset($_POST['submit'])) {
     $username = $_POST['username'];
-    $password = md5($_POST['password']);
+    $passwordbaru = md5($_POST['password']);
     $datein = date('Y-m-d');
-    $quser = mysqli_query($koneksidb, "SELECT username FROM mst_userlogin WHERE username='$username'");
+    $quser = mysqli_query($koneksidb, "SELECT username,password FROM mst_userlogin WHERE username='$username'");
     $row = mysqli_fetch_array($quser);
+    $passwordlama = $row['password'];
     if ($username != $row['username']) {
         header("Location: index.php?page=lupapassword&pesan=gagal");
     } else {
-        $qinsert = mysqli_query($koneksidb, "INSERT INTO tst_request (username, password_baru, date_request) 
-				VALUES ('$username', '$password', '$datein')") or die(mysqli_error($koneksidb));
+        $qinsert = mysqli_query($koneksidb, "INSERT INTO tst_request (username,password_lama,password_baru,date_request) 
+				VALUES ('$username','$passwordlama','$passwordbaru','$datein')") or die(mysqli_error($koneksidb));
         header("Location: index.php?page=home");
     };
 }

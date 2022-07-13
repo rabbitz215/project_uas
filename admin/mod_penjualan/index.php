@@ -37,7 +37,7 @@ if (!isset($_GET['action'])) {
         <div class="row pb-1">
             <label class="control-label col-md-2">Nama Member</label>
             <div class="col-md-3">
-                <select name="nm_member" id="nm_member" value="" class="form-control">
+                <select name="nm_member" id="nm_member" value="" class="form-select" disabled>
                     <?php
                     $nojual = $_GET['nojual'];
                     $transaksi = mysqli_query($koneksidb, "SELECT a.*, b.nm_member FROM trn_jualhead a INNER JOIN daftarmember b ON a.idmember = b.idmember WHERE a.nojual='$nojual'");
@@ -61,14 +61,15 @@ if (!isset($_GET['action'])) {
         <div class="row pb-1">
             <label class="control-label col-md-2">Nama Barang</label>
             <div class="col-md-3">
-                <select name="kodekomik" id="kodekomik" value="" class="form-control">
+                <select name="kodekomik" id="kodekomik" value="" class="form-select">
                     <option value="">--Pilih Barang--</option>
                     <?php
                     foreach ($data_komik as $k) {
                         echo '<option value="' . $k['kode_komik'] . '"
 							data-namabrg="' . $k['judul'] . '"
-							data-hargabrg=' . $k['harga'] . '>
-							' . $k['judul'] . '</option>';
+							data-hargabrg=' . $k['harga'] . '
+                            data-stock=' . $k['stock'] . '>
+							' . $k['judul'] . ' - Stock : ' . $k['stock'] . '</option>';
                     }
                     ?>
                 </select>

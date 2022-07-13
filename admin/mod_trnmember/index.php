@@ -96,7 +96,7 @@ if (!isset($_GET['action'])) {
         <div class="row pb-1">
             <label class="control-label col-md-2">Nama Member</label>
             <div class="col-md-3">
-                <select name="nm_member" id="nm_member" value="" class="form-control">
+                <select name="nm_member" id="nm_member" value="" class="form-select">
                     <?php
                     $nojual = $_GET['id'];
                     $qjual = mysqli_query($koneksidb, "select jh.*, jd.* from trn_jualhead jh inner join trn_jualdetail jd

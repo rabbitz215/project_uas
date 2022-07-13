@@ -19,6 +19,7 @@ if (!isset($_GET['act'])) {
                 <tr>
                     <th> Tanggal Request </th>
                     <th> Username </th>
+                    <th> Password Lama </th>
                     <th> Password Baru </th>
                     <th> Action </th>
                 </tr>
@@ -31,6 +32,7 @@ if (!isset($_GET['act'])) {
                     <tr>
                         <td><?= date('d/m/Y', strtotime($row['date_request'])); ?></td>
                         <td><?= $row['username']; ?></td>
+                        <td><?= $row['password_lama']; ?></td>
                         <td><?= $row['password_baru']; ?></td>
                         <td>
                             <div class="d-grid gap-1 d-md-block">
@@ -52,10 +54,11 @@ if (!isset($_GET['act'])) {
     $qry_listrequest = mysqli_query($koneksidb, "SELECT * FROM tst_request WHERE id_request=$idrequest");
     $row = mysqli_fetch_array($qry_listrequest);
     $username = $row['username'];
-    $pass = $row['password_baru'];
+    $passbaru = $row['password_baru'];
+    $passlama = $row['password_lama'];
     $date = $row['date_request'];
-    $qhistory = mysqli_query($koneksidb, "INSERT INTO tst_historyrequest (username, password_baru, date_request, status) 
-        VALUES ('$username', '$pass', '$date', 0)") or die(mysqli_error($connect_db));
+    $qhistory = mysqli_query($koneksidb, "INSERT INTO tst_historyrequest (username,password_lama,password_baru,date_request,status) 
+        VALUES ('$username','$passlama','$passbaru','$date', 0)") or die(mysqli_error($connect_db));
     if ($qhistory) {
         $qupdate = mysqli_query($koneksidb, "DELETE from tst_request WHERE id_request=$idrequest") or die(mysqli_error($connect_db));
     }
@@ -65,13 +68,14 @@ if (!isset($_GET['act'])) {
     $qry_listrequest = mysqli_query($koneksidb, "SELECT * FROM tst_request WHERE id_request=$idrequest");
     $row = mysqli_fetch_array($qry_listrequest);
     $username = $row['username'];
-    $pass = $row['password_baru'];
+    $passbaru = $row['password_baru'];
+    $passlama = $row['password_lama'];
     $date = $row['date_request'];
-    $qinsert = mysqli_query($koneksidb, "UPDATE mst_userlogin SET password='$pass' WHERE username='$username'")
+    $qinsert = mysqli_query($koneksidb, "UPDATE mst_userlogin SET password='$passbaru' WHERE username='$username'")
         or die(mysqli_error($koneksidb));
     if ($qinsert) {
-        $qhistory = mysqli_query($koneksidb, "INSERT INTO tst_historyrequest (username, password_baru, date_request, status) 
-        VALUES ('$username', '$pass', '$date', 1)") or die(mysqli_error($connect_db));
+        $qhistory = mysqli_query($koneksidb, "INSERT INTO tst_historyrequest (username,password_lama,password_baru,date_request,status) 
+        VALUES ('$username','$passlama','$passbaru','$date', 1)") or die(mysqli_error($connect_db));
         $qdelete = mysqli_query($koneksidb, "DELETE FROM tst_request WHERE id_request=$idrequest") or die(mysqli_error($connect_db));
         echo '<meta http-equiv="refresh" content="0; url=' . ADMIN_URL . '?modul=mod_lupapass&pesan=berhasil">';
     }
@@ -84,20 +88,22 @@ if (!isset($_GET['act'])) {
                 <tr>
                     <th> Tanggal Request </th>
                     <th> Username </th>
+                    <th> Password Lama </th>
                     <th> Password Baru </th>
                     <th> Status</th>
                 </tr>
             </thead>
             <tbody class="table-light">
                 <?php
-                $qry_listrequest = mysqli_query($koneksidb, "SELECT * FROM tst_historyrequest order by id_request DESC") or die("gagal akses tabel mst_blog" . mysqli_error($koneksidb));
+                $qry_listrequest = mysqli_query($koneksidb, "SELECT * FROM tst_historyrequest order by id_historyrequest DESC") or die("gagal akses tabel mst_blog" . mysqli_error($koneksidb));
                 while ($row = mysqli_fetch_array($qry_listrequest)) {
                 ?>
                     <tr>
                         <td><?= date('d/m/Y', strtotime($row['date_request'])); ?></td>
                         <td><?= $row['username']; ?></td>
+                        <td><?= $row['password_lama']; ?></td>
                         <td><?= $row['password_baru']; ?></td>
-                        <td><?= ($row['status'] == 1) ? "Accepted" : "Declined"; ?></td>
+                        <td><span class="disabled btn-sm <?= ($row['status'] == 1) ? "btn-success" : "btn-danger"; ?>"><?= ($row['status'] == 1) ? "Accepted" : "Declined"; ?></span></td>
                     </tr>
                 <?php
                 }

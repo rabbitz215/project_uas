@@ -46,21 +46,6 @@ if (!isset($_GET['act'])) {
                         <div class="mb-3 row">
                             <label for="" class="col-sm-2 col-form-label">Username</label>
                             <div class="col-sm-4">
-                                <!-- <select name="iduser" id="" class="form-select">
-                                    <?php
-                                    while ($r = mysqli_fetch_array($quser)) {
-
-                                        if ($r['iduser'] == $username) {
-                                            $selec = "selected";
-                                        } else {
-                                            $selec = "";
-                                        }
-                                    ?>
-                                        <option value="<?= $r['iduser']; ?>" <?= $selec; ?>><?= $r['username']; ?></option>
-                                    <?php
-                                    };
-                                    ?>
-                                </select> -->
                                 <?php
                                 foreach ($quser as $user) :
                                 ?>
@@ -71,31 +56,35 @@ if (!isset($_GET['act'])) {
                                 ?>
                             </div>
                         </div>
-                        <table class="table table-striped table-primary table-bordered border-info">
-                            <tr>
-                                <th style="width: 4%;">#</th>
-                                <th>Menu</th>
-                            </tr>
-                            <?php
-                            while ($r = mysqli_fetch_array($qmenu)) {
-                                $qakses = mysqli_query($koneksidb, "SELECT * FROM hakakses_menu 
+                        <table class="table table-striped">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th style="width: 4%;">#</th>
+                                    <th>Menu</th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-light">
+                                <?php
+                                while ($r = mysqli_fetch_array($qmenu)) {
+                                    $qakses = mysqli_query($koneksidb, "SELECT * FROM hakakses_menu 
                         WHERE iduser='" . $_GET['iduser'] . "' && idmenu=" . $r['idmenu'] . " ");
 
-                                $cek = mysqli_num_rows($qakses);
-                                if ($cek > 0) {
-                                    $check = "checked";
-                                } else {
-                                    $check = "";
-                                }
+                                    $cek = mysqli_num_rows($qakses);
+                                    if ($cek > 0) {
+                                        $check = "checked";
+                                    } else {
+                                        $check = "";
+                                    }
 
-                            ?>
-                                <tr>
-                                    <td><input class="form-check-input" type="checkbox" name="idmenu[]" id="ckmenu" value="<?= $r['idmenu']; ?>" <?= $check; ?>></td>
-                                    <td value="<?= $r['idmenu']; ?>"><?= $r['nmmenu']; ?></td>
-                                </tr>
-                            <?php
-                            };
-                            ?>
+                                ?>
+                                    <tr>
+                                        <td><input class="form-check-input" type="checkbox" name="idmenu[]" id="ckmenu" value="<?= $r['idmenu']; ?>" <?= $check; ?>></td>
+                                        <td value="<?= $r['idmenu']; ?>"><?= $r['nmmenu']; ?></td>
+                                    </tr>
+                                <?php
+                                };
+                                ?>
+                            </tbody>
                         </table>
                         <div class="mb-3">
                             <button type="button" class="btn btn-primary" name="txtsimpan" id="txtsimpan" data-bs-togle="modal">Simpan</button>

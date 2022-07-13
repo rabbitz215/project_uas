@@ -81,19 +81,17 @@ if (!isset($_GET['action'])) {
             <div class="row pt-3">
                 <label class="col-md-2">Kategori Menu</label>
                 <div class="col-md-5">
-                    <input type="text" name="kategorimenu" id="kategorimenu" class="form-control">
+                    <select name="kategorimenu" id="kategorimenu" class="form-select">
+                        <option value="admin">Admin</option>
+                        <option value="komik">Komik</option>
+                        <option value="penjualan">Penjualan</option>
+                    </select>
                 </div>
             </div>
             <div class="row pt-3">
                 <label class="col-md-2">Link</label>
                 <div class="col-md-5">
                     <input type="text" name="link" id="link" class="form-control">
-                </div>
-            </div>
-            <div class="row pt-3">
-                <label class="col-md-2">Icon</label>
-                <div class="col-md-5">
-                    <input type="text" name="icon" id="icon" class="form-control">
                 </div>
             </div>
             <div class="row pt-3">
@@ -123,19 +121,17 @@ if (!isset($_GET['action'])) {
             <div class="row pt-3">
                 <label class="col-md-2">Kategori Menu</label>
                 <div class="col-md-5">
-                    <input type="text" class="form-control" name="kategorimenu" value="<?= $dt['kategori_menu']; ?>">
+                    <select name="kategorimenu" id="kategorimenu" value="" class="form-select">
+                        <option value="admin" <?= ($dt['kategori_menu'] == "admin") ? "selected" : ""; ?>>Admin</option>
+                        <option value="komik" <?= ($dt['kategori_menu'] == "komik") ? "selected" : ""; ?>>Komik</option>
+                        <option value="penjualan" <?= ($dt['kategori_menu'] == "penjualan") ? "selected" : ""; ?>>Penjualan</option>
+                    </select>
                 </div>
             </div>
             <div class="row pt-3">
                 <label class="col-md-2">Link</label>
                 <div class="col-md-5">
                     <input type="text" class="form-control" name="link" value="<?= $dt['link']; ?>">
-                </div>
-            </div>
-            <div class="row pt-3">
-                <label class="col-md-2">Icon</label>
-                <div class="col-md-5">
-                    <input type="text" class="form-control" name="icon" value="<?= $dt['icon']; ?>">
                 </div>
             </div>
             <div class="row pt-3">
