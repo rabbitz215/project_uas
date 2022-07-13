@@ -149,6 +149,10 @@ if (isset($_GET['action']) && $_GET['action'] == "ordersave") {
 		 VALUES ('$no_inv', '$nm_member','$tgl_trans',$total)") or die("error head" . mysqli_error($koneksidb));
     if ($qinsert_head) {
         for ($i = 0; $i < $jml_list; $i++) {
+            $cekstock = mysqli_query($koneksidb, "SELECT * FROM mst_komik WHERE kode_komik='$kodekomik[$i]'");
+            $cek = mysqli_fetch_array($cekstock);
+            $pengurangan = $cek['stock'] - $qty[$i];
+            $queryupstock = mysqli_query($koneksidb, "UPDATE mst_komik SET stock='$pengurangan' WHERE kode_komik='$kodekomik[$i]'");
             $qinsert_det = mysqli_query($koneksidb, "INSERT INTO trn_jualdetail 
 			(nojual,kode_komik,harga,qty,subtotal) VALUES ('$no_inv', '$kodekomik[$i]', $harga[$i], $qty[$i], $subtotal[$i])")
                 or die("error detail " . mysqli_error($koneksidb));
