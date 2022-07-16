@@ -12,11 +12,11 @@ if (!isset($_GET['action'])) {
     $gambar = $cc['cover'];
     if ($gambar == "default.jpg") {
         $querydelete = mysqli_query($koneksidb, "DELETE FROM mst_komik WHERE kode_komik='$id'");
-        header('Location: home.php?modul=mod_komik');
+        echo '<meta http-equiv="refresh" content="0; url=' . ADMIN_URL . '?modul=mod_komik">';
     } else {
         $querydelete = mysqli_query($koneksidb, "DELETE FROM mst_komik WHERE kode_komik='$id'");
         unlink("../assets/img/$gambar");
-        header('Location: home.php?modul=mod_komik');
+        echo '<meta http-equiv="refresh" content="0; url=' . ADMIN_URL . '?modul=mod_komik">';
     }
 } else if (isset($_GET['action']) && $_GET['action'] == "add") {
     $proses = "insert";
@@ -31,14 +31,15 @@ if (!isset($_GET['action'])) {
     if ($proses == "insert") {
         $kode_komik = $_POST['kode'];
         $judul = $_POST['judul'];
+        $deskripsi = $_POST['deskripsi'];
         $stock = $_POST['stock'];
         $harga = $_POST['harga'];
         $penerbit = $_POST['penerbit'];
         $tahunterbit = $_POST['tahunterbit'];
         $kategori = $_POST['kategori'];
         if ($_FILES['cover']['name'] == "") {
-            mysqli_query($koneksidb, "insert into mst_komik (kode_komik,judul,penerbit,tahun_terbit,id_kategori,harga,stock,cover) VALUES ('$kode_komik','$judul','$penerbit','$tahunterbit','$kategori','$harga','$stock','default.jpg')") or die(mysqli_error($koneksidb));
-            header("Location: home.php?modul=mod_komik");
+            mysqli_query($koneksidb, "insert into mst_komik (kode_komik,judul,penerbit,tahun_terbit,id_kategori,harga,stock,cover,desc_komik) VALUES ('$kode_komik','$judul','$penerbit','$tahunterbit','$kategori','$harga','$stock','default.jpg','$deskripsi')") or die(mysqli_error($koneksidb));
+            echo '<meta http-equiv="refresh" content="0; url=' . ADMIN_URL . '?modul=mod_komik">';
         } else {
             $file = $_FILES['cover'];
             $target_dir = "../assets/img/";
@@ -62,8 +63,8 @@ if (!isset($_GET['action'])) {
             if ($is_upload == 1) {
                 if (move_uploaded_file($file['tmp_name'], $target_file)) {
                     $namafile = $file['name'];
-                    mysqli_query($koneksidb, "insert into mst_komik (kode_komik,judul,penerbit,tahun_terbit,id_kategori,harga,stock,cover) VALUES ('$kode_komik','$judul','$penerbit','$tahunterbit','$kategori','$harga','$stock','$namafile')") or die(mysqli_error($koneksidb));
-                    header("Location: home.php?modul=mod_komik");
+                    mysqli_query($koneksidb, "insert into mst_komik (kode_komik,judul,penerbit,tahun_terbit,id_kategori,harga,stock,cover,desc_komik) VALUES ('$kode_komik','$judul','$penerbit','$tahunterbit','$kategori','$harga','$stock','$namafile','$deskripsi')") or die(mysqli_error($koneksidb));
+                    echo '<meta http-equiv="refresh" content="0; url=' . ADMIN_URL . '?modul=mod_komik">';
                 } else if ($is_upload == 0) {
                     pesan("GAGAL upload file gambar!!");
                 }
@@ -73,14 +74,15 @@ if (!isset($_GET['action'])) {
         if ($_FILES['cover']['name'] == "") {
             $id = $_POST['kodekomik'];
             $judul = $_POST['judul'];
+            $deskripsi = $_POST['deskripsi'];
             $stock = $_POST['stock'];
             $harga = $_POST['harga'];
             $penerbit = $_POST['penerbit'];
             $tahunterbit = $_POST['tahunterbit'];
             $kategori = $_POST['kategori'];
             $namafile = $_POST['gambarlama'];
-            mysqli_query($koneksidb, "UPDATE mst_komik SET judul='$judul',penerbit='$penerbit',tahun_terbit='$tahunterbit',id_kategori='$kategori',harga='$harga',stock='$stock',cover='$namafile' WHERE kode_komik = '$id' ") or die(mysqli_error($koneksidb));
-            header("Location: home.php?modul=mod_komik");
+            mysqli_query($koneksidb, "UPDATE mst_komik SET judul='$judul',penerbit='$penerbit',tahun_terbit='$tahunterbit',id_kategori='$kategori',harga='$harga',stock='$stock',cover='$namafile',desc_komik='$deskripsi' WHERE kode_komik = '$id' ") or die(mysqli_error($koneksidb));
+            echo '<meta http-equiv="refresh" content="0; url=' . ADMIN_URL . '?modul=mod_komik">';
         } else {
             $file = $_FILES['cover'];
             $target_dir = "../assets/img/";
@@ -105,18 +107,20 @@ if (!isset($_GET['action'])) {
                     $namafile = $file['name'];
                     $id = $_POST['kodekomik'];
                     $judul = $_POST['judul'];
+                    $deskripsi = $_POST['deskripsi'];
                     $stock = $_POST['stock'];
                     $harga = $_POST['harga'];
                     $penerbit = $_POST['penerbit'];
                     $tahunterbit = $_POST['tahunterbit'];
                     $kategori = $_POST['kategori'];
+
                     if ($namafile == $_POST['gambarlama']) {
-                        $edit = mysqli_query($koneksidb, "UPDATE mst_komik SET judul='$judul',penerbit='$penerbit',tahun_terbit='$tahunterbit',id_kategori='$kategori',harga='$harga',stock='$stock',cover='$namafile' WHERE kode_komik = '$id' ") or die(mysqli_error($koneksidb));
+                        $edit = mysqli_query($koneksidb, "UPDATE mst_komik SET judul='$judul',penerbit='$penerbit',tahun_terbit='$tahunterbit',id_kategori='$kategori',harga='$harga',stock='$stock',desc_komik='$deskripsi' WHERE kode_komik = '$id' ") or die(mysqli_error($koneksidb));
                     } else if ($_POST['gambarlama'] == "default.jpg" && !empty($namafile)) {
-                        $edit = mysqli_query($koneksidb, "UPDATE mst_komik SET judul='$judul',penerbit='$penerbit',tahun_terbit='$tahunterbit',id_kategori='$kategori',harga='$harga',stock='$stock',cover='$namafile' WHERE kode_komik = '$id' ") or die(mysqli_error($koneksidb));
+                        $edit = mysqli_query($koneksidb, "UPDATE mst_komik SET judul='$judul',penerbit='$penerbit',tahun_terbit='$tahunterbit',id_kategori='$kategori',harga='$harga',stock='$stock',cover='$namafile',desc_komik='$deskripsi' WHERE kode_komik = '$id' ") or die(mysqli_error($koneksidb));
                     } else {
                         $old = $_POST['gambarlama'];
-                        $edit = mysqli_query($koneksidb, "UPDATE mst_komik SET judul='$judul',penerbit='$penerbit',tahun_terbit='$tahunterbit',id_kategori='$kategori',harga='$harga',stock='$stock',cover='$namafile' WHERE kode_komik = '$id' ") or die(mysqli_error($koneksidb));
+                        $edit = mysqli_query($koneksidb, "UPDATE mst_komik SET judul='$judul',penerbit='$penerbit',tahun_terbit='$tahunterbit',id_kategori='$kategori',harga='$harga',stock='$stock',cover='$namafile',desc_komik='$deskripsi' WHERE kode_komik = '$id' ") or die(mysqli_error($koneksidb));
                         unlink("../assets/img/$old");
                     }
                     echo '<meta http-equiv="refresh" content="0; url=' . ADMIN_URL . '?modul=mod_komik">';
