@@ -14,7 +14,6 @@ if (!isset($_GET['action'])) {
     $id = $dt['idmenu'];
     $nmmenu = $dt['nmmenu'];
     $link = $dt['link'];
-    $icon = $dt['icon'];
     $proses = "update";
 } else if (isset($_GET['action']) && $_GET['action'] == "save") {
     $proses = $_POST['proses'];
@@ -23,16 +22,14 @@ if (!isset($_GET['action'])) {
         $nmmenu = $_POST['nmmenu'];
         $link = $_POST['link'];
         $kategori = $_POST['kategorimenu'];
-        $icon = $_POST['icon'];
-        mysqli_query($koneksidb, "insert into mst_menu(kode_menu,nmmenu,kategori_menu,link,icon)values('$kode','$nmmenu','$kategori','$link','$icon')") or die(mysqli_error($koneksidb));
+        mysqli_query($koneksidb, "insert into mst_menu(kode_menu,nmmenu,kategori_menu,link)values('$kode','$nmmenu','$kategori','$link')") or die(mysqli_error($koneksidb));
         echo '<meta http-equiv="refresh" content="0; url=' . ADMIN_URL . '?modul=mod_menu">';
     } else if ($proses == "update") {
         $id = $_POST['idmenu'];
         $nmmenu = $_POST['nmmenu'];
         $link = $_POST['link'];
         $kategori = $_POST['kategorimenu'];
-        $icon = $_POST['icon'];
-        mysqli_query($koneksidb, "update mst_menu set nmmenu='$nmmenu',kategori_menu='$kategori' ,link='$link', icon='$icon' where idmenu = $id ") or die(mysqli_error($koneksidb));
+        mysqli_query($koneksidb, "update mst_menu set nmmenu='$nmmenu',kategori_menu='$kategori' ,link='$link' where idmenu = $id ") or die(mysqli_error($koneksidb));
         echo '<meta http-equiv="refresh" content="0; url=' . ADMIN_URL . '?modul=mod_menu">';
     }
 } else if (isset($_GET['action']) && $_GET['action'] == "delete") {

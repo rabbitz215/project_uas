@@ -32,7 +32,7 @@ if (mysqli_num_rows($query_cekkode) > 0) {
         <div class="row pb-1">
             <label class="control-label col-md-2">Nama Member</label>
             <div class="col-md-3">
-                <select name="nm_member" id="nm_member" value="" class="form-control">
+                <select name="nm_member" id="nm_member" value="" class="form-select">
                     <option value="">--Pilih Member--</option>
                     <?php
                     foreach ($data_member as $p) {
@@ -54,14 +54,15 @@ if (mysqli_num_rows($query_cekkode) > 0) {
         <div class="row pb-1">
             <label class="control-label col-md-2">Nama Barang</label>
             <div class="col-md-3">
-                <select name="kodekomik" id="kodekomik" value="" class="form-control">
+                <select name="kodekomik" id="kodekomik" value="" class="form-select">
                     <option value="">--Pilih Barang--</option>
                     <?php
                     foreach ($data_komik as $p) {
                         echo '<option value="' . $p['kode_komik'] . '"
 							data-namabrg="' . $p['judul'] . '"
-							data-hargabrg=' . $p['harga'] . '>
-							' . $p['judul'] . '</option>';
+							data-hargabrg=' . $p['harga'] . ' 
+                            data-stock=' . $p['stock'] . '>
+							' . $p['judul'] . ' - Stock : ' . $p['stock'] . '</option>';
                     }
                     ?>
                 </select>

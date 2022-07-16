@@ -119,13 +119,16 @@ if (document.getElementById("formorder")) {
     let tanggal = $("#tgl_trans").val();
     let subtotal = 0;
     let total = $("#total").val();
-    console.log(total);
+    let stockbarang = $("#kodekomik").find(":selected").data("stock");
+    // console.log(total);
     if (kodekomik == "") {
       alert("Barang belum dipilih!!");
     } else if (qty == "" || qty == 0) {
       alert("Jumlah belum diinput!!");
     } else if (tanggal == "") {
       alert("Tanggal belum diinput!!");
+    } else if (qty > stockbarang) {
+      alert("Stock tidak mencukupi");
     } else {
       subtotal = Number(harga) * Number(qty);
       let listrows = "<tr>";
@@ -137,8 +140,8 @@ if (document.getElementById("formorder")) {
       $("#listbarang").append(listrows);
       total = Number(total) + Number(subtotal);
 
+      $("#viewtotalharga").text(total);
       $("#total").val(total);
-      $("#viewtotalbayar").text(total);
 
       $("#btn_order").prop('disabled', false);
     }
@@ -172,11 +175,14 @@ if (document.getElementById("formorderadmin")) {
     let qty = $("#jml").val();
     let subtotal = 0;
     let total = $("#total").val();
+    let stockbarang = $("#kodekomik").find(":selected").data("stock");
     // console.log(total);
     if (kodekomik == "") {
       alert("Barang belum dipilih!!");
     } else if (qty == "" || qty == 0) {
       alert("Jumlah belum diinput!!");
+    } else if (qty > stockbarang) {
+      alert("Stock tidak mencukupi");
     } else {
       subtotal = Number(harga) * Number(qty);
       let listrows = "<tr>";

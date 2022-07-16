@@ -146,7 +146,7 @@ if (!isset($_GET['action'])) {
             <div class="row pt-3">
                 <label class="col-md-2">Kategori</label>
                 <div class="col-md-5">
-                    <select name="kategori" id="kategori" class="form-control" required>
+                    <select name="kategori" id="kategori" class="form-select" required>
                         <option value="" selected disabled>--Pilih Kategori--</option>
                         <?php
                         foreach ($data_kategori as $k) :
@@ -225,7 +225,7 @@ if (!isset($_GET['action'])) {
             <div class="row pt-3">
                 <label class="col-md-2">Kategori</label>
                 <div class="col-md-5">
-                    <select name="kategori" id="kategori" class="form-control" required>
+                    <select name="kategori" id="kategori" class="form-select" required>
                         <option value="" disabled>--Pilih Kategori--</option>
                         <?php
 
