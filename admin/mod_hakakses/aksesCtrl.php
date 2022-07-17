@@ -19,6 +19,6 @@ if (isset($_GET['act']) && ($_GET['act'] == 'edit')) {
             echo "gagal";
         }
     }
-    header("Location: home.php?modul=mod_hakakses&tampil");
+    echo '<meta http-equiv="refresh" content="0; url=' . ADMIN_URL . '?modul=mod_hakakses&tampil">';
     // $tampil = 1;
 }

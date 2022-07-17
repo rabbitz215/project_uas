@@ -24,6 +24,9 @@ function rupiah($angka)
                                 <h5>Harga : <?= rupiah($p['harga']); ?></h5>
                                 <h5>Genre : <?= $p['nm_kategori']; ?></h5>
                                 <p style="color: black; font-family: Arial, Helvetica, sans-serif; font-size: 14px">
+                                    <?= $p['desc_komik']; ?> <br />
+                                </p>
+                                <p style="color: black; font-family: Arial, Helvetica, sans-serif; font-size: 14px">
                                     Stok : <?= $p['stock']; ?> <br />
                                     <!-- Deskripsi : <?= $p['deskripsi']; ?> <br /> -->
                                 </p>

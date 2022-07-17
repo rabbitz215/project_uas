@@ -25,7 +25,7 @@ if (!isset($_GET['action'])) {
                     <td><?= $list['email']; ?></td>
                     <td><?= $list['no_telp']; ?></td>
                     <td><?= $list['alamat']; ?></td>
-                    <td><?= $list['jk']; ?></td>
+                    <td><?= ($list['jk'] == "L" ? "Laki-Laki" : "Perempuan"); ?></td>
                     <td>
                         <a href="?modul=mod_trnmember&action=detail&id=<?= $list['idmember']; ?>" class="btn btn-primary">
                             <i class="bi bi-pencil-square"></i>History Order</a>
@@ -56,7 +56,7 @@ if (!isset($_GET['action'])) {
                     <li class="list-group-item">Tanggal Lahir : <?= $d['tgl_lhr']; ?></li>
                     <li class="list-group-item">No.Telp : <?= $d['no_telp']; ?></li>
                     <li class="list-group-item">Alamat : <?= $d['alamat']; ?></li>
-                    <li class="list-group-item">Jenis Kelamin : <?= $d['jk']; ?></li>
+                    <li class="list-group-item">Jenis Kelamin : <?= ($d['jk'] == "L" ? "Laki-Laki" : "Perempuan"); ?></li>
                 <?php
             endforeach;
                 ?>

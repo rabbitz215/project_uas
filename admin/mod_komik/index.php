@@ -231,7 +231,7 @@ if (!isset($_GET['action'])) {
 
                         foreach ($data_kategori as $k) :
                         ?>
-                            <option value="<?= $k['id_kategori']; ?> <?php ($k['id_kategori'] == $dt['id_kategori']) ? "selected" : "" ?>"><?= $k['nm_kategori']; ?></option>
+                            <option value="<?= $k['id_kategori']; ?>" <?= ($k['id_kategori'] == $dt['id_kategori']) ? "selected" : "" ?>><?= $k['nm_kategori']; ?></option>
                         <?php
                         endforeach;
                         ?>
