@@ -31,7 +31,7 @@ if (!isset($_GET['action'])) {
             </tr>
         </thead>
         <?php
-        $list_komik = mysqli_query($koneksidb, "SELECT a.*,b.nm_kategori FROM mst_komik a INNER JOIN mst_kategori b ON a.id_kategori = b.id_kategori");
+        $list_komik = mysqli_query($koneksidb, "SELECT a.*,b.nm_kategori FROM mst_komik a INNER JOIN mst_kategori b ON a.id_kategori = b.id_kategori ORDER BY a.kode_komik ASC");
         if (isset($_POST['search'])) {
             $search = $_POST['search'];
             $list_komik = mysqli_query($koneksidb, "SELECT a.*,b.nm_kategori FROM mst_komik a INNER JOIN mst_kategori b ON a.id_kategori = b.id_kategori WHERE a.judul LIKE '%$search%' || b.nm_kategori LIKE '%$search%'");
