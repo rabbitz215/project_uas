@@ -26,6 +26,7 @@ if (!isset($_GET['action'])) {
                 <th>Tahun Terbit</th>
                 <th>Harga</th>
                 <th>Stock</th>
+                <th>Deskripsi Komik</th>
                 <th>Cover</th>
                 <th>Action</th>
             </tr>
@@ -46,6 +47,7 @@ if (!isset($_GET['action'])) {
                 <td><?= $lk['tahun_terbit']; ?></td>
                 <td><?= rupiah($lk['harga']); ?></td>
                 <td><?= $lk['stock']; ?></td>
+                <td><?= $lk['desc_komik']; ?></td>
                 <td><img src="../assets/img/<?= $lk['cover']; ?>" width="100" alt=""></td>
                 <td>
                     <a href="?modul=mod_komik&action=edit&id=<?= $lk['kode_komik']; ?>" class="btn btn-xs btn-primary"><i class="bi bi-pencil-square"></i> Edit</a>
@@ -109,6 +111,12 @@ if (!isset($_GET['action'])) {
                 <label class="col-md-2">Judul Komik/Manga</label>
                 <div class="col-md-5">
                     <input type="text" name="judul" id="judul" class="form-control">
+                </div>
+            </div>
+            <div class="row pt-3">
+                <label class="col-md-2">Deskripsi Komik/Manga</label>
+                <div class="col-md-5">
+                    <textarea name="deskripsi" id="deskripsi" cols="30" rows="10"></textarea>
                 </div>
             </div>
             <div class="row pt-3">
@@ -182,6 +190,12 @@ if (!isset($_GET['action'])) {
                 <label class="col-md-2">Judul</label>
                 <div class="col-md-5">
                     <input class="form-control" type="text" id="judul" name="judul" value="<?= $dt['judul']; ?>">
+                </div>
+            </div>
+            <div class="row pt-3">
+                <label class="col-md-2">Judul</label>
+                <div class="col-md-5">
+                    <textarea name="deskripsi" id="deskripsi" cols="30" rows="10"><?= $dt['desc_komik']; ?></textarea>
                 </div>
             </div>
             <div class="row pt-3">

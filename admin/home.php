@@ -26,6 +26,21 @@ security_login();
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+	<script src="https://cdn.tiny.cloud/1/ctai2l7ettpdz3uyphr0lz4x23v2z3otpascq7sk3miw64e3/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+	<script>
+		tinymce.init({
+			selector: 'textarea#deskripsi',
+			plugins: [
+				'advlist', 'autolink',
+				'lists', 'link', 'image', 'charmap', 'preview', 'anchor', 'searchreplace', 'visualblocks',
+				'fullscreen', 'insertdatetime', 'media', 'table', 'help',
+				'wordcount'
+			],
+			toolbar: 'undo redo | formatpainter casechange blocks | bold italic backcolor | ' +
+				'alignleft aligncenter alignright alignjustify | ' +
+				'bullist numlist checklist outdent indent | removeformat | a11ycheck code table help'
+		});
+	</script>
 </head>
 
 <body>
