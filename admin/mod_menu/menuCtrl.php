@@ -21,9 +21,14 @@ if (!isset($_GET['action'])) {
         $kode = $_POST['kode_menu'];
         $nmmenu = $_POST['nmmenu'];
         $link = $_POST['link'];
-        $kategori = $_POST['kategorimenu'];
-        mysqli_query($koneksidb, "insert into mst_menu(kode_menu,nmmenu,kategori_menu,link)values('$kode','$nmmenu','$kategori','$link')") or die(mysqli_error($koneksidb));
-        echo '<meta http-equiv="refresh" content="0; url=' . ADMIN_URL . '?modul=mod_menu">';
+        $cek = mysqli_query($koneksidb, "SELECT link FROM mst_menu WHERE link='$link'");
+        if (mysqli_num_rows($cek) > 0) {
+            pesan("Link sudah terdaftar");
+        } else {
+            $kategori = $_POST['kategorimenu'];
+            mysqli_query($koneksidb, "insert into mst_menu(kode_menu,nmmenu,kategori_menu,link)values('$kode','$nmmenu','$kategori','$link')") or die(mysqli_error($koneksidb));
+            echo '<meta http-equiv="refresh" content="0; url=' . ADMIN_URL . '?modul=mod_menu">';
+        }
     } else if ($proses == "update") {
         $id = $_POST['idmenu'];
         $nmmenu = $_POST['nmmenu'];
@@ -35,5 +40,13 @@ if (!isset($_GET['action'])) {
 } else if (isset($_GET['action']) && $_GET['action'] == "delete") {
     $id = $_GET['id'];
     mysqli_query($koneksidb, "DELETE FROM mst_menu WHERE idmenu=$id");
+    echo '<meta http-equiv="refresh" content="0; url=' . ADMIN_URL . '?modul=mod_menu">';
+}
+
+function pesan($alert)
+{
+    echo '<script language="javascript">';
+    echo 'alert("' . $alert . '")';  //not showing an alert box.
+    echo '</script>';
     echo '<meta http-equiv="refresh" content="0; url=' . ADMIN_URL . '?modul=mod_menu">';
 }

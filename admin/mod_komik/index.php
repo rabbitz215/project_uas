@@ -1,10 +1,5 @@
 <?php
 include_once("komikCtrl.php");
-function rupiah($angka)
-{
-    $hasil_rupiah = "Rp." . number_format($angka, 2, ',', '.');
-    return $hasil_rupiah;
-}
 if (!isset($_GET['action'])) {
 ?>
     <div class="d-flex justify-content-between mb-3">

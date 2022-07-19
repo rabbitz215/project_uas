@@ -7,7 +7,6 @@ session_destroy();
     <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
         <?php
         $querytop = "SELECT a.*, b.*, SUM(qty) FROM trn_jualdetail a INNER JOIN mst_komik b ON a.kode_komik = b.kode_komik GROUP BY a.kode_komik ORDER BY SUM(qty) DESC LIMIT 4";
-        $query = "SELECT a.*, b.nm_kategori FROM mst_komik a INNER JOIN mst_kategori b ON a.id_kategori = b.id_kategori";
         $hasil = mysqli_query($koneksidb, $querytop);
         foreach ($hasil as $p) :
         ?>

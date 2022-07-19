@@ -25,7 +25,7 @@ if (!isset($_GET['action'])) {
     $isactive = $_POST['isactive'];
     $proses = $_POST['proses'];
     if ($proses == "insert") {
-        mysqli_query($koneksidb, "insert into mst_userlogin(username,nama_lengkap,password,is_active)values('$username','$nama','$pass','$isactive')") or die(mysqli_error($koneksidb));
+        mysqli_query($koneksidb, "insert into mst_userlogin(username,nama_lengkap,password,is_active)values('$username','$nama','$passbaru','$isactive')") or die(mysqli_error($koneksidb));
         echo '<meta http-equiv="refresh" content="0; url=' . ADMIN_URL . '?modul=mod_userlogin">';
     } else if ($proses == "update") {
         if ($pwlama === $pass) {
@@ -39,5 +39,5 @@ if (!isset($_GET['action'])) {
 } else if (isset($_GET['action']) && $_GET['action'] == "delete") {
     $id = $_GET['id'];
     mysqli_query($koneksidb, "DELETE FROM mst_userlogin where iduser='$id'");
-    // echo '<meta http-equiv="refresh" content="0; url=' . ADMIN_URL . '?modul=mod_userlogin">';
+    echo '<meta http-equiv="refresh" content="0; url=' . ADMIN_URL . '?modul=mod_userlogin">';
 }

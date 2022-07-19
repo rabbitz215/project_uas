@@ -10,11 +10,12 @@ require_once("config/config.php");
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Shop Homepage - Start Bootstrap Template</title>
+    <title>Comic Store | Shop Homepage</title>
     <!-- Bootstrap icons-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="assets/css/styles.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="assets/img/icons/icon-48x48.png" />
 </head>
 
 <body>
@@ -48,14 +49,14 @@ require_once("config/config.php");
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="?page=order">Order Comic</a></li>
                 </ul>
                 <div class="w-25">
-                    <form class="d-flex flex-row-reverse" method="POST">
+                    <form class="d-flex flex-row-reverse" method="POST" action="index.php">
                         <input class="form-control me-2" type="text" placeholder="Cari disini" name="search">
                         <input class="btn btn-outline-success me-3" type="submit" value="Search"></input>
                     </form>
                 </div>
                 <form class="d-flex">
-                    <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>
-                    <a class="nav-link" href="?page=daftarmember">Daftar Member</a>
+                    <a class="nav-link text-white btn btn-primary me-3" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>
+                    <a class="nav-link text-white btn btn-primary" href="?page=daftarmember">Daftar Member</a>
                 </form>
             </div>
         </div>
@@ -123,8 +124,8 @@ require_once("config/config.php");
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="assets/js/scripts.js"></script>
     <script src="assets/js/galang.js"></script>
+    <script src="assets/js/scripts.js"></script>
 </body>
 
 </html>

@@ -33,7 +33,17 @@ function rupiah($angka)
                             </div>
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item btndetail">
-                                    <a href="http://wa.me/6281339364971?text=Saya mau beli komik <?= $p['judul']; ?> , Harga Rp. <?= rupiah($p['harga']); ?> " target="_blank" class="btn btn-lg btn-primary">Beli Yuk</a>
+                                    <?php
+                                    if ($p['stock'] == 0) {
+                                    ?>
+                                        <a href="#" class="btn disabled btn-lg btn-primary">Stock Habis</a>
+                                    <?php
+                                    } else {
+                                    ?>
+                                        <a href="http://wa.me/6281339364971?text=Saya mau beli komik <?= $p['judul']; ?> , Harga Rp. <?= rupiah($p['harga']); ?> " target="_blank" class="btn btn-lg btn-primary">Beli Yuk</a>
+                                    <?php
+                                    }
+                                    ?>
                                     <a href="/project_uas" class="btn btn-lg btn-warning">Kembali</a>
                                 </li>
                             </ul>

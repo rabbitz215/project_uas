@@ -44,6 +44,8 @@ session_destroy();
                             <h5 class="fw-bolder"><?= $p['judul']; ?></h5>
                             <!-- Product price-->
                             Rp.<?= $p['harga']; ?>
+                            <br>
+                            Stock : <?= $p['stock']; ?>
                         </div>
                     </div>
                     <!-- Product actions-->

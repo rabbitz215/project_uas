@@ -3,6 +3,11 @@ session_start();
 require_once("../config/koneksidb.php");
 require_once("../config/config.php");
 security_login();
+function rupiah($angka)
+{
+	$hasil_rupiah = "Rp." . number_format($angka, 2, ',', '.');
+	return $hasil_rupiah;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,7 +52,7 @@ security_login();
 	<div class="wrapper">
 		<nav id="sidebar" class="sidebar js-sidebar">
 			<div class="sidebar-content js-simplebar">
-				<a class="sidebar-brand" href="index.php">
+				<a class="sidebar-brand">
 					<span class="align-middle">Comic Store</span>
 				</a>
 
@@ -83,6 +88,10 @@ security_login();
 				<?php
 				if (isset($_GET['modul'])) {
 					include_once $_GET['modul'] . "/index.php";
+				} else {
+				?>
+					<h1>WELCOME <?= strtoupper($_SESSION['namauser_log']); ?> TO ADMIN PAGE</h1>
+				<?php
 				}
 				?>
 			</main>

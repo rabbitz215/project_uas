@@ -1,6 +1,4 @@
-<!-- lupa passwordCtrl -->
 <?php
-session_start();
 if (isset($_POST['submit'])) {
     $username = $_POST['username'];
     $passwordbaru = md5($_POST['password']);

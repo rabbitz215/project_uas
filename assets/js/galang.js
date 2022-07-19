@@ -1,4 +1,8 @@
-
+function rupiah($angka)
+{
+    $hasil_rupiah = "Rp." . number_format($angka, 2, ',', '.');
+    return $hasil_rupiah;
+}
 
 $('#btnsubmit').click(function () {
     let stock = $('#stock').val();
@@ -213,6 +217,9 @@ if (document.getElementById("formorderadmin")) {
 }
 
 if(document.getElementById("formlupapass")){
+
+  $("#konfirm").prop('disabled', true);
+
   $("#konfirm").click(function () {
     let user = $("#username").val();
     let pass_baru = $("#password").val();
@@ -233,8 +240,11 @@ if(document.getElementById("formlupapass")){
     let konfirmpassbaru = $("#konfirmpassword").val();
     if(pass_baru !== konfirmpassbaru){
       $("#txtkonfirm").text("Password Tidak Sama !!!");
+      $("#konfirm").prop('disabled', true);
     }else{
       $("#txtkonfirm").text("");
+      $("#konfirm").prop('disabled', false);
     }
   })
+
 }

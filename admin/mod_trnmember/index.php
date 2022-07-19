@@ -80,7 +80,7 @@ if (!isset($_GET['action'])) {
                 <tr>
                     <td><?= $list['nojual']; ?></td>
                     <td><?= $list['tgl_transaksi']; ?></td>
-                    <td><?= $list['total']; ?></td>
+                    <td><?= rupiah($list['total']); ?></td>
                     <td>
                         <a href="?modul=mod_trnmember&action=detailorder&id=<?= $list['nojual']; ?>" class="btn btn-primary">
                             <i class="bi bi-pencil-square"></i>Detail</a>
@@ -141,7 +141,7 @@ if (!isset($_GET['action'])) {
                                 <td><?= $d['judul']; ?></td>
                                 <td width="10%"><?= $d['harga']; ?></td>
                                 <td width="5%"><?= $d['qty']; ?></td>
-                                <td width="10%"><?= $d['subtotal']; ?></td>
+                                <td width="10%"><?= rupiah($d['subtotal']); ?></td>
                             </tr>
                         <?php
                         endforeach;
@@ -157,7 +157,7 @@ if (!isset($_GET['action'])) {
                                 ?>
                                     <span id="viewtotalbayar"></span>
                                     <input type="hidden" name="total" id="total" value="<?= $t['total']; ?>">
-                                    <span id="hargalama"><?= $t['total']; ?></span>
+                                    <span id="hargalama"><?= rupiah($t['total']); ?></span>
                                 <?php
                                 endforeach;
                                 ?>

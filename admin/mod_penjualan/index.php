@@ -108,7 +108,7 @@ if (!isset($_GET['action'])) {
                                 <td><?= $d['judul']; ?></td>
                                 <td width="10%"><?= $d['harga']; ?></td>
                                 <td width="5%"><?= $d['qty']; ?></td>
-                                <td width="10%"><?= $d['subtotal']; ?></td>
+                                <td width="10%"><?= rupiah($d['subtotal']); ?></td>
                             </tr>
                         <?php
                         endforeach;
@@ -124,7 +124,7 @@ if (!isset($_GET['action'])) {
                                 ?>
                                     <span id="viewtotalbayar"></span>
                                     <input type="hidden" name="total" id="total" value="<?= $t['total']; ?>">
-                                    <span id="hargalama"><?= $t['total']; ?></span>
+                                    <span id="hargalama"><?= rupiah($t['total']); ?></span>
                                 <?php
                                 endforeach;
                                 ?>
