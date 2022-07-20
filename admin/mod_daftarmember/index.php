@@ -10,6 +10,7 @@ if (!isset($_GET['action'])) {
                 <th>No Telepon</th>
                 <th>Alamat</th>
                 <th>Jenis Kelamin</th>
+                <th>Foto</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -25,8 +26,9 @@ if (!isset($_GET['action'])) {
                     <td><?= $list['no_telp']; ?></td>
                     <td><?= $list['alamat']; ?></td>
                     <td><?= ($list['jk'] == "L" ? "Laki-Laki" : "Perempuan"); ?></td>
+                    <td><img src="../assets/img/<?= $list['foto']; ?>" alt="" width="150px"></td>
                     <td>
-                        <a href="?modul=mod_trnmember&action=delete&id=<?= $list['idmember']; ?>" class="btn btn-xs btn-danger"><i class="bi bi-trash"></i>Delete</a>
+                        <a href="?modul=mod_daftarmember&action=delete&id=<?= $list['idmember']; ?>" class="btn btn-xs btn-danger"><i class="bi bi-trash"></i>Delete</a>
                     </td>
                 </tr>
             <?php } ?>
